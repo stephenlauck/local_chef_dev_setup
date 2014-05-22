@@ -15,6 +15,7 @@ Does not currently support Windows or Mac OSX earlier than Mavericks
 
 ### Make sure ruby and bundler are installed and working
 `$ which ruby && ruby -v`
+
 `$ which bundle && bundle -v`
 
 ### Install kitchen-vagrant gem if not already present
@@ -22,11 +23,14 @@ Does not currently support Windows or Mac OSX earlier than Mavericks
 
 ## Local cookbook development workflow
 
-### Clone community python cookbook
-`$ git clone git@github.com:poise/python.git`
+### Clone community cookbook
+`$ git clone git@github.com:opscode-cookbooks/jenkins.git`
+
+### set up github ssh keys if necessary (homework)
+[Generating SSH Keys](https://help.github.com/articles/generating-ssh-keys)
 
 ### list test-kitchen VM's
-`$ cd python`
+`$ cd jenkins`
 
 `$ kitchen list`
 
@@ -40,10 +44,4 @@ platforms:
 ```
 
 ### Run VM for CentOS 6.5 and install python 2.7 from source
-`$ kitchen converge source-centos-65`
-
-
-### Log into converged VM and check python version
-`$ kitchen login source-centos-65`
-
-`[vagrant@source-centos-65 ~]$ python -v`
+`$ kitchen test centos-65`
