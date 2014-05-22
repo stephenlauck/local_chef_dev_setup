@@ -1,7 +1,6 @@
 ## Download and install
 
-[chef-dk](http://www.getchef.com/downloads/chef-dk)
-Does not currently support Windows or Mac OSX earlier than Mavericks
+[chef-dk](http://www.getchef.com/downloads/chef-dk) - Does not currently support Windows or Mac OSX earlier than Mavericks
 
 [virtual box](https://www.virtualbox.org/wiki/Downloads)
 
@@ -14,34 +13,74 @@ Does not currently support Windows or Mac OSX earlier than Mavericks
 `echo 'export PATH="/opt/chefdk/embedded/bin:$PATH"' >> $HOME/.bash_profile`
 
 ### Make sure ruby and bundler are installed and working
-`$ which ruby && ruby -v`
+`which ruby && ruby -v`
 
-`$ which bundle && bundle -v`
+`which bundle && bundle -v`
 
 ### Install kitchen-vagrant gem if not already present
-`$ chef gem install kitchen-vagrant`
+`chef gem install kitchen-vagrant`
 
 ## Local cookbook development workflow
 
-### Clone community cookbook
-`$ git clone git@github.com:opscode-cookbooks/jenkins.git`
-
-### set up github ssh keys if necessary (homework)
-[Generating SSH Keys](https://help.github.com/articles/generating-ssh-keys)
+### create new cookbook using Berkshelf
+`berks cookbook pipeline`
 
 ### list test-kitchen VM's
-`$ cd jenkins`
+`cd pipeline`
 
-`$ kitchen list`
+### add jenkins dependency to metadata.rb
+`depends 'jenkins'`
 
-### add .kitchen.local.yml file with a platform for CentOS 6.5
+### use Berkshelf to download dependency cookbooks
+`berks install`
+
+### Add jenkins to recipes/default.rb to create a jenkins master
+### and also install java
+
+`include_recipe 'jenkins::java'`
+
+`include_recipe 'jenkins::master'`
+
+### Modify .kitchen.yml to add default recipe and attribute
 ```
-platforms:
-- name: centos-6.5
-  driver_config:
-    box: opscode-centos-6.5
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
+suites:
+  - name: default
+    run_list: pipeline::default
+    attributes:
+      jenkins:
+        master:
+          install_method: package
 ```
 
-### Run VM for CentOS 6.5 and install python 2.7 from source
-`$ kitchen test centos-65`
+### Modify .kitchen.yml to add cpu/memory and port forwarding for jenkins
+```
+driver_config:
+  network:
+  - ["forwarded_port", {guest: 8080, host: 8080}]
+  customize:
+    memory: 2048
+    cpus: 2
+```
+
+### Show all kitchen instances
+`kitchen list`
+
+### Run VM for CentOS 6.5 and converge with configuration
+`kitchen converge centos`
+
+### See if jenkins is running
+`http://localhost:8080`
+
+
+### see git status of files added and modified
+`git status`
+
+### add all files
+`git add .`
+
+### commit all changes
+`git commit -m "initial commit of pipeline cookbook"`
+
+
+## Links to example cookbook
+[Pipeline Cookbook Example](https://github.com/stephenlauck/setup_local_chef_dev_pipeline)
