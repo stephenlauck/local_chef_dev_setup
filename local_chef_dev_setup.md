@@ -1,4 +1,6 @@
-## Download and install
+## Local Development Setup for Chef
+
+### Download and install
 
 [chef-dk](http://www.getchef.com/downloads/chef-dk) - Does not currently support Windows or Mac OSX earlier than Mavericks
 
