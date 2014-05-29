@@ -8,6 +8,10 @@
 
 [vagrant](http://www.vagrantup.com/downloads.html)
 
+[test-kitchen](http://kitchen.ci)
+
+[berkshelf](http://berkshelf.com)
+
 ### If you are not able to run chef-dk check out this blog post by Mischa Taylor:
 [Set Up a Sane Ruby Cookbook Authoring Environment for Chef on Mac OS X, Linux and Windows](http://misheska.com/blog/2013/12/26/set-up-a-sane-ruby-cookbook-authoring-environment-for-chef/)
 
@@ -43,25 +47,31 @@
 
 `include_recipe 'jenkins::master'`
 
-### Modify .kitchen.yml to add default recipe and attribute
+### Modify .kitchen.yml to configure port forwarding, cpu/memory settings, update platform to centos-6.5, and set default recipe and attributes
 ```
-suites:
-  - name: default
-    run_list: pipeline::default
-    attributes:
-      jenkins:
-        master:
-          install_method: package
-```
+driver:
+  name: vagrant
 
-### Modify .kitchen.yml to add cpu/memory and port forwarding for jenkins
-```
 driver_config:
   network:
   - ["forwarded_port", {guest: 8080, host: 8080}]
   customize:
     memory: 2048
     cpus: 2
+
+provisioner:
+  name: chef_solo
+
+platforms:
+  - name: centos-6.5
+
+suites:
+  - name: default
+    run_list:  pipeline::default
+    attributes:
+      jenkins:
+        master:
+          install_method: package
 ```
 
 ### Show all kitchen instances
