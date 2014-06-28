@@ -40,12 +40,12 @@
 ### use Berkshelf to download dependency cookbooks
 `berks install`
 
-### Add jenkins to recipes/default.rb to create a jenkins master
-### and also install java
+### Add jenkins to recipes/default.rb to create a jenkins master and install java
 
-`include_recipe 'jenkins::java'`
-
-`include_recipe 'jenkins::master'`
+```
+include_recipe 'jenkins::java'
+include_recipe 'jenkins::master'
+```
 
 ### Modify .kitchen.yml to configure port forwarding, cpu/memory settings, update platform to centos-6.5, and set default recipe and attributes
 ```
