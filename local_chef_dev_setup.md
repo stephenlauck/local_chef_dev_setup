@@ -23,9 +23,6 @@
 
 `which bundle && bundle -v`
 
-### Install kitchen-vagrant gem if not already present
-`chef gem install kitchen-vagrant`
-
 ## Local cookbook development workflow
 
 ### create new cookbook using Berkshelf
