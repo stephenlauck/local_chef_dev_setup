@@ -20,7 +20,7 @@
 ### create new cookbook using Berkshelf
 `berks cookbook pipeline`
 
-### list test-kitchen VM's
+### change directory to new cookbook
 `cd pipeline`
 
 ### add jenkins dependency to metadata.rb
