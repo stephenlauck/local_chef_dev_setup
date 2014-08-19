@@ -24,17 +24,49 @@
 `cd pipeline`
 
 ### add jenkins dependency to metadata.rb
-`depends 'jenkins'`
+```
+name             'pipeline'
+maintainer       'YOUR_NAME'
+maintainer_email 'YOUR_EMAIL'
+license          'All rights reserved'
+description      'Installs/Configures pipeline'
+long_description 'Installs/Configures pipeline'
+version          '0.1.0'
+
+depends          'jenkins'
+```
 
 ### use Berkshelf to download dependency cookbooks
 `berks install`
 
+### add jenkins::java included recipe to recipes/default.rb
+```
+#
+# Cookbook Name:: pipeline
+# Recipe:: default
+#
+# Copyright (C) 2014 YOUR_NAME
+#
+# All rights reserved - Do Not Redistribute
+#
+
+include_recipe 'jenkins::java'
+```
+
 ### Add jenkins to recipes/default.rb to create a jenkins master
-### and also install java
+```
+#
+# Cookbook Name:: pipeline
+# Recipe:: default
+#
+# Copyright (C) 2014 YOUR_NAME
+#
+# All rights reserved - Do Not Redistribute
+#
 
-`include_recipe 'jenkins::java'`
-
-`include_recipe 'jenkins::master'`
+include_recipe 'jenkins::java'
+include_recipe 'jenkins::master'
+```
 
 ### Modify .kitchen.yml to configure port forwarding, cpu/memory settings, update platform to centos-6.5, and set default recipe and attributes
 ```
@@ -49,14 +81,15 @@ driver_config:
     cpus: 2
 
 provisioner:
-  name: chef_solo
+  name: chef_zero
 
 platforms:
   - name: centos-6.5
 
 suites:
   - name: default
-    run_list:  pipeline::default
+    run_list:  
+      pipeline::default
     attributes:
 ```
 
