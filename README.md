@@ -8,12 +8,12 @@
 
 [vagrant](http://www.vagrantup.com/downloads.html)
 
-### Windows needs git installed
+#### if windows git needs installed
 
 [git](http://git-scm.com/download/win)
 
-### Test chefdk install
-`knife -v && berks -v && kitchen -v`
+### Test install
+`knife -v && berks -v && kitchen -v && git --version`
 
 ## Local cookbook development workflow
 
