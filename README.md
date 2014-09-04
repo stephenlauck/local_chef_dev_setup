@@ -8,9 +8,17 @@
 
 [vagrant](http://www.vagrantup.com/downloads.html)
 
-#### if windows git needs installed
+#### Windows users will need to install git
 
 [git](http://git-scm.com/download/win)
+
+#### Windows users may also need to set an environment variable
+
+`SSL_CERT_FILE=C:\opscode\chef\embedded\ssl\certs\cacert.pem`
+
+#### Windows users should turn off ssl_verify for Berkshelf
+
+`echo '{"ssl":{"verify": false }}' > ~/.berkshelf/config.json`
 
 ### Test install
 `knife -v && berks -v && kitchen -v && git --version`
