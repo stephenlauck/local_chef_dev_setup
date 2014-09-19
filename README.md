@@ -8,6 +8,8 @@
 
 [vagrant](http://www.vagrantup.com/downloads.html)
 
+[sublime text (optional)](http://www.sublimetext.com/2)
+
 #### Windows users will need to install git
 
 [git](http://git-scm.com/download/win)
