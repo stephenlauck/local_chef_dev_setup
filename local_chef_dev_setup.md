@@ -8,6 +8,8 @@
 
 [vagrant](http://www.vagrantup.com/downloads.html)
 
+[sublime text (optional)](http://www.sublimetext.com/2)
+
 ### If you are not able to run chef-dk check out this blog post by Mischa Taylor:
 [Set Up a Sane Ruby Cookbook Authoring Environment for Chef on Mac OS X, Linux and Windows](http://misheska.com/blog/2013/12/26/set-up-a-sane-ruby-cookbook-authoring-environment-for-chef/)
 
