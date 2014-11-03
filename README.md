@@ -119,7 +119,3 @@ suites:
 
 ### commit all changes
 `git commit -m "initial commit of pipeline cookbook"`
-
-
-## Links to example cookbook
-[Pipeline Cookbook Example](https://github.com/stephenlauck/setup_local_chef_dev_pipeline)
