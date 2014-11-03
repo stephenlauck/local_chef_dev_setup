@@ -14,16 +14,12 @@
 
 [git](http://git-scm.com/download/win)
 
-#### Windows users may also need to set an environment variable
+On the screen below make sure to choose 'Use Git and optional Unix tools from the Windows Command Prompt'
 
-`SSL_CERT_FILE=C:\opscode\chefdk\embedded\ssl\certs\cacert.pem`
-
-#### Windows users should turn off ssl_verify for Berkshelf
-
-`echo '{"ssl":{"verify": false }}' > ~/.berkshelf/config.json`
+![Use Git and optional Unix tools from the Windows Command Prompt](images/git_install.png)
 
 ### Test install
-`knife -v && berks -v && kitchen -v && git --version`
+`knife -v && chef -v && git --version`
 
 ## Local cookbook development workflow
 
