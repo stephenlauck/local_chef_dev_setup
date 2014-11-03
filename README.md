@@ -24,7 +24,7 @@ On the screen below make sure to choose 'Use Git and optional Unix tools from th
 ## Local cookbook development workflow
 
 ### create new cookbook using Berkshelf
-`berks cookbook pipeline`
+`chef generate pipeline`
 
 ### change directory to new cookbook
 `cd pipeline`
@@ -39,11 +39,9 @@ description      'Installs/Configures pipeline'
 long_description 'Installs/Configures pipeline'
 version          '0.1.0'
 
+depends          'java'
 depends          'jenkins'
 ```
-
-### use Berkshelf to download dependency cookbooks
-`berks install`
 
 ### add jenkins::java included recipe to recipes/default.rb
 ```
@@ -56,7 +54,7 @@ depends          'jenkins'
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe 'jenkins::java'
+include_recipe 'java::default'
 ```
 
 ### Add jenkins to recipes/default.rb to create a jenkins master
@@ -70,7 +68,7 @@ include_recipe 'jenkins::java'
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe 'jenkins::java'
+include_recipe 'java::default'
 include_recipe 'jenkins::master'
 ```
 
@@ -82,6 +80,7 @@ driver:
 driver_config:
   network:
   - ["forwarded_port", {guest: 8080, host: 8080}]
+  - ["private_network", {ip: "33.33.33.10"}]
   customize:
     memory: 2048
     cpus: 2
@@ -90,7 +89,7 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: centos-6.5
+  - name: centos-7.0
 
 suites:
   - name: default
@@ -102,12 +101,11 @@ suites:
 ### Show all kitchen instances
 `kitchen list`
 
-### Run VM for CentOS 6.5 and converge with configuration
+### Run VM for CentOS and converge with configuration
 `kitchen converge centos`
 
 ### See if jenkins is running
 `http://localhost:8080`
-
 
 ### see git status of files added and modified
 `git status`
