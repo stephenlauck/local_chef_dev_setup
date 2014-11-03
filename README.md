@@ -1,4 +1,6 @@
+---
 ## Local Development Setup for Chef
+---
 
 ### Download and install
 
@@ -21,7 +23,9 @@ On the screen below make sure to choose 'Use Git and optional Unix tools from th
 ### Test install
 `knife -v && chef -v && git --version`
 
+---
 ## Local cookbook development workflow
+---
 
 ### create new cookbook using Berkshelf
 `chef generate pipeline`
