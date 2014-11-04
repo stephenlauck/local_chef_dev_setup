@@ -1,3 +1,4 @@
+# This cookbook has been deprecated and moved to the Chef Solutions Organization at [https://github.com/chef-solutions/local-development](https://github.com/chef-solutions/local-development)
 ---
 ## Local Development Setup for Chef
 ---
